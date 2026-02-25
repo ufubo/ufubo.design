@@ -269,7 +269,7 @@
                         const card = `
                             <a href="product.html?id=${slug}" class="pillar-card relative block h-[28rem] group cursor-pointer bg-zinc-900">
                                 <div class="pillar-img-wrapper filter grayscale group-hover:grayscale-0">
-                                    <img src="${project.hero_image}" alt="${project.title}" class="pillar-img">
+                                    <img src="${project.hero_image.startsWith('/') ? '.' + project.hero_image : project.hero_image}" alt="${project.title}" class="pillar-img">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500 rounded-inherit"></div>
                                 <div class="absolute bottom-0 left-0 p-8 w-full z-10">
@@ -296,4 +296,5 @@
     
 </body>
 </html>
+
 
