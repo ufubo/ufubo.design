@@ -15,11 +15,21 @@ collections:
     format: "json"
     fields:
       - {label: "Proje Adı", name: "title", widget: "string"}
-      - {label: "Müşteri / Marka", name: "client", widget: "string"}
+      - {label: "Ürün Türü (Örn: Passenger Seat, Wooden Toy)", name: "product_type", widget: "string"}
+      
+      - {label: "Bünyesinde Tasarlanan Şirket (Opsiyonel)", name: "company", widget: "string", required: false}
+      - {label: "Şirket Logosu (Opsiyonel)", name: "company_logo", widget: "image", required: false}
+      
+      - {label: "Nihai Müşteri (Opsiyonel)", name: "end_client", widget: "string", required: false}
+      - {label: "Nihai Müşteri Logosu (Opsiyonel)", name: "end_client_logo", widget: "image", required: false}
+      
       - {label: "Rolün", name: "role", widget: "string", default: "Lead Industrial Designer"}
       - {label: "Yıl", name: "year", widget: "string"}
-      - {label: "Süre", name: "duration", widget: "string", required: false}
-      - {label: "Kapak Görseli", name: "hero_image", widget: "image"}
-      - {label: "Zorluk", name: "challenge", widget: "text"}
-      - {label: "Çözüm", name: "solution", widget: "text"}
-      - {label: "Final Render", name: "final_render", widget: "image"}
+      - {label: "Süre (Opsiyonel)", name: "duration", widget: "string", required: false}
+      
+      - {label: "Kapak Görseli (Hero)", name: "hero_image", widget: "image"}
+      
+      - {label: "The Challenge / Zorluk (Opsiyonel)", name: "challenge", widget: "text", required: false}
+      - {label: "The Solution / Çözüm (Opsiyonel)", name: "solution", widget: "text", required: false}
+      
+      - {label: "Final Render (Büyük)", name: "final_render", widget: "image"}
