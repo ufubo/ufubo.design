@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: ufubo/ufubo.design
   branch: main
 
 media_folder: "uploads"
