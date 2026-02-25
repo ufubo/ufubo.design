@@ -38,6 +38,7 @@ content:
       - name: hero_image
         label: "Kapak Görseli (Hero)"
         type: image
+        description: "Lütfen 21:9 oranında bir görsel yükleyin."
       - name: text_sections
         label: "Ekstra Metin Bölümleri (Opsiyonel)"
         type: object
