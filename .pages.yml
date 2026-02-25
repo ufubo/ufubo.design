@@ -3,88 +3,88 @@ media:
   output: /uploads
 content:
   - name: projects
-    label: Portfolyo Projeleri
+    label: "Portfolyo Projeleri"
     type: collection
     path: data/projects
     format: json
     fields:
       - name: title
-        label: Proje Adı
+        label: "Proje Adı"
         type: string
       - name: product_type
-        label: Ürün Türü (Örn: Passenger Seat)
+        label: "Ürün Türü (Örn: Passenger Seat)"
         type: string
       - name: company
-        label: Tasarım Ajansı / Şirket
+        label: "Tasarım Ajansı / Şirket (Opsiyonel)"
         type: string
       - name: company_logo
-        label: Şirket Logosu
+        label: "Şirket Logosu (Opsiyonel)"
         type: image
       - name: end_client
-        label: Nihai Müşteri
+        label: "Nihai Müşteri (Opsiyonel)"
         type: string
       - name: end_client_logo
-        label: Nihai Müşteri Logosu
+        label: "Nihai Müşteri Logosu (Opsiyonel)"
         type: image
       - name: role
-        label: Rolün
+        label: "Rolün"
         type: string
       - name: year
-        label: Proje Çıkış Yılı
+        label: "Proje Çıkış Yılı"
         type: string
       - name: duration
-        label: Süre
+        label: "Süre (Opsiyonel)"
         type: string
       - name: hero_image
-        label: Kapak Görseli
+        label: "Kapak Görseli (Hero)"
         type: image
       - name: text_sections
-        label: Ekstra Metin Bölümleri
+        label: "Ekstra Metin Bölümleri (Opsiyonel)"
         type: object
         list: true
         fields:
           - name: heading
-            label: Başlık
+            label: "Başlık"
             type: string
           - name: content
-            label: İçerik
+            label: "İçerik"
             type: rich-text
       - name: awards
-        label: Ödüller
+        label: "Ödüller (Opsiyonel)"
         type: object
         list: true
         fields:
           - name: logo
-            label: Ödül Logosu
+            label: "Ödül Logosu"
             type: image
           - name: title
-            label: Ödül Adı
+            label: "Ödül Adı"
             type: string
           - name: year
-            label: Ödül Yılı
+            label: "Ödül Yılı"
             type: string
           - name: subtitle
-            label: Derece
+            label: "Derece"
             type: string
           - name: link
-            label: Haber Linki
+            label: "Haber Linki (Opsiyonel)"
             type: string
       - name: gallery
-        label: Proje Galerisi
+        label: "Proje Galerisi"
         type: object
         list: true
         fields:
           - name: image
-            label: Görsel
+            label: "Görsel"
             type: image
       - name: external_links
-        label: Harici Linkler
+        label: "Harici Linkler (Opsiyonel)"
         type: object
         list: true
         fields:
           - name: title
-            label: Başlık
+            label: "Başlık"
             type: string
           - name: url
-            label: URL
+            label: "URL"
             type: string
