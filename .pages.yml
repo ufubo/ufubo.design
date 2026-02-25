@@ -1,0 +1,90 @@
+media:
+  input: uploads
+  output: /uploads
+content:
+  - name: projects
+    label: Portfolyo Projeleri
+    type: collection
+    path: data/projects
+    format: json
+    fields:
+      - name: title
+        label: Proje Adı
+        type: string
+      - name: product_type
+        label: Ürün Türü (Örn: Passenger Seat)
+        type: string
+      - name: company
+        label: Tasarım Ajansı / Şirket
+        type: string
+      - name: company_logo
+        label: Şirket Logosu
+        type: image
+      - name: end_client
+        label: Nihai Müşteri
+        type: string
+      - name: end_client_logo
+        label: Nihai Müşteri Logosu
+        type: image
+      - name: role
+        label: Rolün
+        type: string
+      - name: year
+        label: Proje Çıkış Yılı
+        type: string
+      - name: duration
+        label: Süre
+        type: string
+      - name: hero_image
+        label: Kapak Görseli
+        type: image
+      - name: text_sections
+        label: Ekstra Metin Bölümleri
+        type: object
+        list: true
+        fields:
+          - name: heading
+            label: Başlık
+            type: string
+          - name: content
+            label: İçerik
+            type: rich-text
+      - name: awards
+        label: Ödüller
+        type: object
+        list: true
+        fields:
+          - name: logo
+            label: Ödül Logosu
+            type: image
+          - name: title
+            label: Ödül Adı
+            type: string
+          - name: year
+            label: Ödül Yılı
+            type: string
+          - name: subtitle
+            label: Derece
+            type: string
+          - name: link
+            label: Haber Linki
+            type: string
+      - name: gallery
+        label: Proje Galerisi
+        type: object
+        list: true
+        fields:
+          - name: image
+            label: Görsel
+            type: image
+      - name: external_links
+        label: Harici Linkler
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Başlık
+            type: string
+          - name: url
+            label: URL
+            type: string
