@@ -242,20 +242,20 @@
         </div>
     </footer>
 
-    <script>
+<script>
         async function loadProjects() {
             const grid = document.getElementById('project-grid');
             
             try {
-                // 1. GitHub depondaki projeler klasörünün içindekileri oku
-                const repoUrl = 'https://api.github.com/repos/ufubo/ufubodesign/contents/data/projects';
+                // İŞTE DÜZELTİLEN ADRES BURASI: ufubo.design
+                const repoUrl = 'https://api.github.com/repos/ufubo/ufubo.design/contents/data/projects';
                 const response = await fetch(repoUrl);
                 const files = await response.json();
 
-                // 2. Grid'in içini temizle
+                // Grid'in içini temizle
                 grid.innerHTML = '';
 
-                // 3. Her bir JSON dosyası için kart oluştur
+                // Her bir JSON dosyası için kart oluştur
                 for (const file of files) {
                     if (file.name.endsWith('.json')) {
                         // Veriyi çek
@@ -293,5 +293,7 @@
         // Sayfa açıldığında motoru çalıştır
         loadProjects();
     </script>
+    
 </body>
 </html>
+
