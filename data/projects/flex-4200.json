@@ -10,6 +10,13 @@
   "duration": "7 Months",
   "role": "Lead Industrial Designer",
   "hero_image": "/uploads/flex4200_1.webp",
+  "awards": [
+    {
+      "logo": "/uploads/gda2022w.webp",
+      "title": "German Design Award",
+      "subtitle": "Winner"
+    }
+  ],
   "title": "Flex 4200",
   "year": "2019",
   "company": "İnova Otomotiv",
