@@ -2,7 +2,6 @@ backend:
   name: github
   repo: ufubo/ufubo.design
   branch: main
-  # Bu satır, Netlify Identity'nin görevini üstlenir ve Client ID gerektirmez:
   proxy_url: https://api.sveltia.org/auth
 
 media_folder: "uploads"
