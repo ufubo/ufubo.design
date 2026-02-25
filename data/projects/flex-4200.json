@@ -1,6 +1,12 @@
 {
   "product_type": "Passenger Seat",
   "company_logo": "/uploads/inova.webp",
+  "gallery": [
+    "/uploads/flex4200_2.webp",
+    "/uploads/flex4200_3.webp",
+    "/uploads/flex4200_4.webp",
+    "/uploads/flex4200_5.webp"
+  ],
   "duration": "7 Months",
   "role": "Lead Industrial Designer",
   "hero_image": "/uploads/flex4200_1.webp",
