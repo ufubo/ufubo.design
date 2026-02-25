@@ -24,12 +24,11 @@ collections:
       - {label: "Nihai Müşteri Logosu (Opsiyonel)", name: "end_client_logo", widget: "image", required: false}
       
       - {label: "Rolün", name: "role", widget: "string", default: "Lead Industrial Designer"}
-      - {label: "Yıl", name: "year", widget: "string"}
+      - {label: "Proje Çıkış Yılı", name: "year", widget: "string"}
       - {label: "Süre (Opsiyonel)", name: "duration", widget: "string", required: false}
       
       - {label: "Kapak Görseli (Hero)", name: "hero_image", widget: "image"}
       
-      # YENİ: Esnek ve Sınırsız Metin Bölümleri (İstediğin kadar başlık ve paragraf ekleyebilirsin)
       - label: "Ekstra Metin Bölümleri (Opsiyonel)"
         name: "text_sections"
         widget: "list"
@@ -38,20 +37,27 @@ collections:
           - {label: "Başlık (Örn: INSPIRATION)", name: "heading", widget: "string"}
           - {label: "İçerik", name: "content", widget: "text"}
 
-      # YENİ: Sınırsız Ödül Listesi
       - label: "Ödüller (Opsiyonel)"
         name: "awards"
         widget: "list"
         required: false
         fields:
           - {label: "Ödül Logosu", name: "logo", widget: "image"}
-          - {label: "Ödül Adı (Örn: Design Turkey 2018)", name: "title", widget: "string"}
+          - {label: "Ödül Adı (Örn: Design Turkey)", name: "title", widget: "string"}
+          - {label: "Ödül Yılı (Örn: 2018)", name: "year", widget: "string"}
           - {label: "Derece (Örn: Good Design Award)", name: "subtitle", widget: "string"}
-          - {label: "Link (Opsiyonel)", name: "link", widget: "string", required: false}
+          - {label: "Haber/Kanıt Linki (Opsiyonel)", name: "link", widget: "string", required: false}
 
-      # YENİ: Sınırsız İmmerisve Galeri (Aşağı doğru akacak)
       - label: "Proje Galerisi (Sınırsız Görsel)"
         name: "gallery"
         widget: "list"
         required: false
         field: {label: "Görsel", name: "image", widget: "image"}
+
+      - label: "Harici Linkler (Opsiyonel)"
+        name: "external_links"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Link Başlığı (Örn: Üretici Resmi Sayfası)", name: "title", widget: "string"}
+          - {label: "URL (Link)", name: "url", widget: "string"}
