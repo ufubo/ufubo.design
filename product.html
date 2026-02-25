@@ -3,24 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agile 4525L | Ufuk Bircan Özkan</title>
+    <title>Project Details | Ufubo Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #09090b; }
         .glass-header { backdrop-filter: blur(12px); background-color: rgba(9, 9, 11, 0.75); }
-        
         details > summary { list-style: none; cursor: pointer; }
         details > summary::-webkit-details-marker { display: none; }
-        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
-        @keyframes sweep {
-            0%    {opacity: 0; transform: translateY(-10px)}
-            100%  {opacity: 1; transform: translateY(0)}
-        }
-
-        .placeholder-box {
-            background-color: transparent; border: 4px solid #ffffff; display: flex; align-items: center; justify-content: center; color: #ffffff; font-family: monospace; font-size: 1.5rem; letter-spacing: 0.1em;
-        }
     </style>
 </head>
 <body class="text-zinc-300 antialiased selection:bg-zinc-700 selection:text-white relative">
@@ -35,107 +25,151 @@
         </div>
     </header>
 
-    <section class="h-screen w-full relative pt-20 pb-6 px-6">
-        <div class="w-full h-full placeholder-box">
-            HERO IMAGE (IMMERSIVE RENDER)
+    <main id="dynamic-content" class="pt-20 pb-24 min-h-screen">
+        <div class="flex justify-center items-center h-[60vh]">
+            <div class="animate-pulse text-zinc-500 tracking-widest text-sm uppercase">Loading Project...</div>
         </div>
-    </section>
+    </main>
 
-    <section class="max-w-[90rem] mx-auto px-6 py-16">
-        <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
-            <div class="lg:w-1/3">
-                <h1 class="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-2">Agile 4525L</h1>
-                <p class="text-xl text-zinc-500 font-light">Passenger Seat</p>
-            </div>
-            <div class="lg:w-1/3 text-sm md:text-base text-zinc-400 leading-relaxed font-light space-y-2">
-                <p><strong class="font-semibold text-white">Duration:</strong> 19 months</p>
-                <p><strong class="font-semibold text-white">Release:</strong> October 2018</p>
-                <p><strong class="font-semibold text-white">Brand:</strong> Inova Otomotiv</p>
-                <p><strong class="font-semibold text-white">Client:</strong> Mercedes-Benz & Arobus</p>
-            </div>
-            <div class="lg:w-1/3 flex items-center gap-8 justify-end">
-                <div class="w-32 h-16 placeholder-box border-2 text-xs">INOVA LOGO</div>
-                <div class="w-32 h-16 placeholder-box border-2 text-xs">MERCEDES LOGO</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-[90rem] mx-auto px-6 pb-16">
-        <div class="border-t border-b border-zinc-800/50 py-12">
-            <h3 class="text-center text-xl font-semibold text-white mb-12 uppercase tracking-widest">Awards</h3>
-            <div class="flex flex-wrap justify-center gap-16">
-                <div class="flex flex-col items-center group">
-                    <div class="w-32 h-32 mb-4 placeholder-box border-2 text-xs text-center p-2">DESIGN TURKEY<br>LOGO</div>
-                    <p class="text-white font-medium text-center">Design Turkey 2018</p>
-                    <p class="text-zinc-500 text-sm text-center mb-2">Good Design Award</p>
-                    <a href="#" class="text-xs text-[#007fff] hover:text-white transition-colors underline">designturkey.org.tr</a>
-                </div>
-                <div class="flex flex-col items-center group">
-                    <div class="w-32 h-32 mb-4 placeholder-box border-2 text-xs text-center p-2">A' DESIGN<br>LOGO</div>
-                    <p class="text-white font-medium text-center">A' Design Award 2019</p>
-                    <p class="text-[#cd7f32] text-sm text-center mb-2 font-bold">Bronze</p>
-                    <a href="#" class="text-xs text-[#007fff] hover:text-white transition-colors underline">adesignaward.com</a>
-                </div>
-                <div class="flex flex-col items-center group">
-                    <div class="w-32 h-32 mb-4 placeholder-box border-2 text-xs text-center p-2">EPDA<br>LOGO</div>
-                    <p class="text-white font-medium text-center">EPDA 2021</p>
-                    <p class="text-zinc-500 text-sm text-center mb-2">Honorable Mention</p>
-                    <a href="#" class="text-xs text-[#007fff] hover:text-white transition-colors underline">productdesignaward.eu</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-[90rem] mx-auto px-6 pb-16">
-        <details class="group border border-zinc-800 rounded-xl overflow-hidden bg-zinc-900/30">
-            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-white hover:bg-zinc-800/50 transition-colors">
-                <span>Read Project Story & Engineering Details</span>
-                <span class="transition group-open:rotate-180">
-                    <svg fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-            </summary>
-            <div class="p-6 pt-0 text-zinc-400 font-light leading-relaxed border-t border-zinc-800 mt-4 pt-6">
-                <p class="mb-4">
-                    <strong class="text-white">The Challenge:</strong> Designing a next-generation passenger seat required a delicate balance between rigorous safety regulations, weight reduction goals for fuel efficiency, and providing ultimate ergonomic comfort for long-distance travel.
-                </p>
-                <p>
-                    <strong class="text-white">The Solution:</strong> Starting from initial sketches, the workflow transitioned rapidly into complex 3D modeling. Every curve was optimized not just for the human body, but for injection molding constraints and assembly line efficiency. Digital prototypes were subjected to rigorous virtual testing before physical mock-ups were created.
-                </p>
-            </div>
-        </details>
-    </section>
-
-    <section class="w-full flex flex-col gap-6 px-6 pb-24">
-        <div class="w-full aspect-[21/9] placeholder-box">IMMERSIVE RENDER 1</div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="w-full aspect-square md:aspect-[4/3] placeholder-box">IMMERSIVE RENDER 2</div>
-            <div class="w-full aspect-square md:aspect-[4/3] placeholder-box">IMMERSIVE RENDER 3</div>
-        </div>
-        <div class="w-full aspect-[16/9] placeholder-box">FINAL SOLUTION RENDER</div>
-    </section>
-
-    <section class="max-w-[90rem] mx-auto px-6 pb-24 text-center">
-        <h4 class="text-sm font-mono text-zinc-500 uppercase tracking-wider mb-6 border-b border-zinc-800 pb-4 inline-block">External Links</h4>
-        <div class="flex justify-center gap-6 mt-4">
-            <a href="#" class="text-zinc-400 hover:text-white transition-colors underline decoration-zinc-700">Museum of Design (MOOD)</a>
-            <a href="#" class="text-zinc-400 hover:text-white transition-colors underline decoration-zinc-700">Client Press Release</a>
-        </div>
-    </section>
-
-    <section class="py-32 bg-zinc-950 text-center border-t border-zinc-900">
-        <h4 class="text-sm font-mono text-zinc-500 uppercase tracking-wider mb-6">Next Project</h4>
-        <a href="#" class="text-4xl md:text-6xl font-bold text-white hover:text-[#007fff] transition-colors inline-block group">
-            Inova Flex 4200
-            <span class="block text-base font-normal text-zinc-500 mt-4 group-hover:text-zinc-400 transition-colors">View Case Study &rarr;</span>
-        </a>
-    </section>
-
-    <footer class="py-12 bg-zinc-950">
-        <div class="max-w-[90rem] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-600 border-t border-zinc-900 pt-8 gap-4">
+    <footer class="py-12 bg-zinc-950 border-t border-zinc-900">
+        <div class="max-w-[90rem] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-600 gap-4">
             <p>&copy; 2026 ufubo.design</p>
             <p><a href="https://ufubo.com" target="_blank" class="hover:text-white transition-colors underline decoration-zinc-700">created by ufubo</a></p>
         </div>
     </footer>
 
+    <script>
+        // Kırık resim yollarını anında düzelten fonksiyon
+        const fixImg = (url) => (url && url.startsWith('/')) ? '.' + url : url;
+
+        async function loadProjectDetails() {
+            const container = document.getElementById('dynamic-content');
+            
+            // Tarayıcının üstündeki adres çubuğundan projeyi bul (Örn: ?id=flex-4200)
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
+
+            if (!projectId) {
+                container.innerHTML = '<h1 class="text-center text-2xl text-white mt-32">Proje bulunamadı. Lütfen ana sayfaya dönün.</h1>';
+                return;
+            }
+
+            try {
+                // GitHub'dan o projenin ham JSON verisini çek
+                const jsonUrl = `https://raw.githubusercontent.com/ufubo/ufubo.design/main/data/projects/${projectId}.json`;
+                const response = await fetch(jsonUrl);
+                
+                if (!response.ok) throw new Error("Dosya bulunamadı");
+                
+                const project = await response.json();
+                
+                // Tarayıcı sekmesinin adını projeye göre değiştir
+                document.title = `${project.title} | Ufubo Design`;
+
+                let html = '';
+
+                // 1. HERO GÖRSELİ
+                if (project.hero_image) {
+                    html += `
+                    <section class="h-[70vh] md:h-screen w-full relative px-6 pb-6 pt-6">
+                        <img src="${fixImg(project.hero_image)}" alt="${project.title}" class="w-full h-full object-cover rounded-xl filter contrast-125">
+                    </section>`;
+                }
+
+                // 2. TEMEL BİLGİLER VE LOGOLAR
+                html += `
+                <section class="max-w-[90rem] mx-auto px-6 py-16">
+                    <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
+                        <div class="lg:w-1/3">
+                            <h1 class="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-2">${project.title || ''}</h1>
+                            <p class="text-xl text-zinc-500 font-light">${project.product_type || ''}</p>
+                        </div>
+                        <div class="lg:w-1/3 text-sm md:text-base text-zinc-400 leading-relaxed font-light space-y-2">
+                            ${project.role ? `<p><strong class="font-semibold text-white">Role:</strong> ${project.role}</p>` : ''}
+                            ${project.duration ? `<p><strong class="font-semibold text-white">Duration:</strong> ${project.duration}</p>` : ''}
+                            ${project.year ? `<p><strong class="font-semibold text-white">Release:</strong> ${project.year}</p>` : ''}
+                            ${project.company ? `<p><strong class="font-semibold text-white">Brand:</strong> ${project.company}</p>` : ''}
+                            ${project.end_client ? `<p><strong class="font-semibold text-white">Client:</strong> ${project.end_client}</p>` : ''}
+                        </div>
+                        <div class="lg:w-1/3 flex items-center justify-end gap-8">
+                            ${project.company_logo ? `<img src="${fixImg(project.company_logo)}" alt="Company Logo" class="h-12 object-contain filter invert opacity-80">` : ''}
+                            ${project.end_client_logo ? `<img src="${fixImg(project.end_client_logo)}" alt="Client Logo" class="h-12 object-contain filter invert opacity-80">` : ''}
+                        </div>
+                    </div>
+                </section>`;
+
+                // 3. ÖDÜLLER BÖLÜMÜ (Opsiyonel)
+                if (project.awards && project.awards.length > 0) {
+                    html += `
+                    <section class="max-w-[90rem] mx-auto px-6 pb-16">
+                        <div class="border-t border-b border-zinc-800/50 py-12">
+                            <h3 class="text-center text-xl font-semibold text-white mb-12 uppercase tracking-widest">Awards</h3>
+                            <div class="flex flex-wrap justify-center gap-16">
+                                ${project.awards.map(award => `
+                                    <div class="flex flex-col items-center group">
+                                        ${award.logo ? `<img src="${fixImg(award.logo)}" alt="${award.title}" class="w-32 h-32 mb-4 object-contain filter invert opacity-90">` : ''}
+                                        <p class="text-white font-medium text-center">${award.title} ${award.year || ''}</p>
+                                        <p class="text-zinc-500 text-sm text-center mb-2">${award.subtitle}</p>
+                                        ${award.link ? `<a href="${award.link}" target="_blank" class="text-xs text-[#007fff] hover:text-white transition-colors underline">View Certificate</a>` : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </section>`;
+                }
+
+                // 4. METİN / HİKAYE BÖLÜMLERİ (Opsiyonel)
+                if (project.text_sections && project.text_sections.length > 0) {
+                    html += `<section class="max-w-[90rem] mx-auto px-6 pb-16 space-y-6">`;
+                    project.text_sections.forEach(section => {
+                        html += `
+                        <details class="group border border-zinc-800 rounded-xl overflow-hidden bg-zinc-900/30" open>
+                            <summary class="flex justify-between items-center font-medium cursor-pointer p-6 text-xl text-white hover:bg-zinc-800/50 transition-colors">
+                                <span>${section.heading}</span>
+                                <span class="transition group-open:rotate-180 text-zinc-500">▼</span>
+                            </summary>
+                            <div class="p-6 pt-0 text-zinc-400 font-light leading-relaxed border-t border-zinc-800 mt-4 pt-6">
+                                ${section.content}
+                            </div>
+                        </details>`;
+                    });
+                    html += `</section>`;
+                }
+
+                // 5. IMMERSIVE GALERİ (Opsiyonel)
+                if (project.gallery && project.gallery.length > 0) {
+                    html += `<section class="w-full flex flex-col gap-6 px-6 pb-24">`;
+                    project.gallery.forEach(item => {
+                        if (item.image) {
+                            html += `<img src="${fixImg(item.image)}" alt="Gallery Render" class="w-full object-cover rounded-xl shadow-2xl">`;
+                        }
+                    });
+                    html += `</section>`;
+                }
+
+                // 6. HARİCİ LİNKLER (Opsiyonel)
+                if (project.external_links && project.external_links.length > 0) {
+                    html += `
+                    <section class="max-w-[90rem] mx-auto px-6 pb-12 text-center">
+                        <h4 class="text-sm font-mono text-zinc-500 uppercase tracking-wider mb-6 border-b border-zinc-800 pb-4 inline-block">External Links</h4>
+                        <div class="flex justify-center gap-6 mt-4">
+                            ${project.external_links.map(link => `
+                                <a href="${link.url}" target="_blank" class="text-zinc-400 hover:text-white transition-colors underline decoration-zinc-700">${link.title}</a>
+                            `).join('')}
+                        </div>
+                    </section>`;
+                }
+
+                // Oluşturduğumuz HTML'i sayfaya bas
+                container.innerHTML = html;
+
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = '<h1 class="text-center text-xl text-zinc-500 mt-32">Proje yüklenirken bir sorun oluştu.</h1>';
+            }
+        }
+
+        loadProjectDetails();
+    </script>
 </body>
 </html>
