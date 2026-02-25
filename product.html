@@ -39,13 +39,16 @@
     </footer>
 
     <script>
-        // Kırık resim yollarını anında düzelten fonksiyon
-        const fixImg = (url) => (url && url.startsWith('/')) ? '.' + url : url;
+        // Kurşun geçirmez resim yolu bulucu
+        const fixImg = (url) => {
+            if (!url) return '';
+            if (url.startsWith('/uploads')) return '.' + url;
+            if (url.startsWith('uploads')) return './' + url;
+            return url;
+        };
 
         async function loadProjectDetails() {
             const container = document.getElementById('dynamic-content');
-            
-            // Tarayıcının üstündeki adres çubuğundan projeyi bul (Örn: ?id=flex-4200)
             const urlParams = new URLSearchParams(window.location.search);
             const projectId = urlParams.get('id');
 
@@ -55,20 +58,16 @@
             }
 
             try {
-                // GitHub'dan o projenin ham JSON verisini çek
                 const jsonUrl = `https://raw.githubusercontent.com/ufubo/ufubo.design/main/data/projects/${projectId}.json`;
                 const response = await fetch(jsonUrl);
-                
                 if (!response.ok) throw new Error("Dosya bulunamadı");
                 
                 const project = await response.json();
-                
-                // Tarayıcı sekmesinin adını projeye göre değiştir
                 document.title = `${project.title} | Ufubo Design`;
 
                 let html = '';
 
-                // 1. HERO GÖRSELİ
+                // HERO
                 if (project.hero_image) {
                     html += `
                     <section class="h-[70vh] md:h-screen w-full relative px-6 pb-6 pt-6">
@@ -76,7 +75,7 @@
                     </section>`;
                 }
 
-                // 2. TEMEL BİLGİLER VE LOGOLAR
+                // TEMEL BİLGİLER & LOGOLAR (Invert kaldırıldı)
                 html += `
                 <section class="max-w-[90rem] mx-auto px-6 py-16">
                     <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
@@ -92,13 +91,13 @@
                             ${project.end_client ? `<p><strong class="font-semibold text-white">Client:</strong> ${project.end_client}</p>` : ''}
                         </div>
                         <div class="lg:w-1/3 flex items-center justify-end gap-8">
-                            ${project.company_logo ? `<img src="${fixImg(project.company_logo)}" alt="Company Logo" class="h-12 object-contain filter invert opacity-80">` : ''}
-                            ${project.end_client_logo ? `<img src="${fixImg(project.end_client_logo)}" alt="Client Logo" class="h-12 object-contain filter invert opacity-80">` : ''}
+                            ${project.company_logo ? `<img src="${fixImg(project.company_logo)}" alt="Company Logo" class="h-12 object-contain">` : ''}
+                            ${project.end_client_logo ? `<img src="${fixImg(project.end_client_logo)}" alt="Client Logo" class="h-12 object-contain">` : ''}
                         </div>
                     </div>
                 </section>`;
 
-                // 3. ÖDÜLLER BÖLÜMÜ (Opsiyonel)
+                // ÖDÜLLER (Invert kaldırıldı, Yıl ve Derece birleştirildi)
                 if (project.awards && project.awards.length > 0) {
                     html += `
                     <section class="max-w-[90rem] mx-auto px-6 pb-16">
@@ -106,11 +105,11 @@
                             <h3 class="text-center text-xl font-semibold text-white mb-12 uppercase tracking-widest">Awards</h3>
                             <div class="flex flex-wrap justify-center gap-16">
                                 ${project.awards.map(award => `
-                                    <div class="flex flex-col items-center group">
-                                        ${award.logo ? `<img src="${fixImg(award.logo)}" alt="${award.title}" class="w-32 h-32 mb-4 object-contain filter invert opacity-90">` : ''}
-                                        <p class="text-white font-medium text-center">${award.title} ${award.year || ''}</p>
-                                        <p class="text-zinc-500 text-sm text-center mb-2">${award.subtitle}</p>
-                                        ${award.link ? `<a href="${award.link}" target="_blank" class="text-xs text-[#007fff] hover:text-white transition-colors underline">View Certificate</a>` : ''}
+                                    <div class="flex flex-col items-center group text-center">
+                                        ${award.logo ? `<img src="${fixImg(award.logo)}" alt="${award.title}" class="w-32 h-32 mb-4 object-contain">` : ''}
+                                        <p class="text-white font-medium">${award.title || ''}</p>
+                                        <p class="text-zinc-500 text-sm mb-2">${[award.year, award.subtitle].filter(Boolean).join(', ')}</p>
+                                        ${award.link ? `<a href="${award.link}" target="_blank" class="text-xs text-[#007fff] hover:text-white transition-colors underline">Award page</a>` : ''}
                                     </div>
                                 `).join('')}
                             </div>
@@ -118,7 +117,7 @@
                     </section>`;
                 }
 
-                // 4. METİN / HİKAYE BÖLÜMLERİ (Opsiyonel)
+                // METİN BÖLÜMLERİ
                 if (project.text_sections && project.text_sections.length > 0) {
                     html += `<section class="max-w-[90rem] mx-auto px-6 pb-16 space-y-6">`;
                     project.text_sections.forEach(section => {
@@ -136,18 +135,20 @@
                     html += `</section>`;
                 }
 
-                // 5. IMMERSIVE GALERİ (Opsiyonel)
+                // GALERİ (CMS'in farklı kaydetme ihtimallerine karşı korumalı)
                 if (project.gallery && project.gallery.length > 0) {
                     html += `<section class="w-full flex flex-col gap-6 px-6 pb-24">`;
                     project.gallery.forEach(item => {
-                        if (item.image) {
-                            html += `<img src="${fixImg(item.image)}" alt="Gallery Render" class="w-full object-cover rounded-xl shadow-2xl">`;
+                        // Eğer obje ise item.image al, düz metinse item'in kendisini al
+                        const imgPath = typeof item === 'string' ? item : item.image;
+                        if (imgPath) {
+                            html += `<img src="${fixImg(imgPath)}" alt="Gallery Render" class="w-full object-cover rounded-xl shadow-2xl">`;
                         }
                     });
                     html += `</section>`;
                 }
 
-                // 6. HARİCİ LİNKLER (Opsiyonel)
+                // HARİCİ LİNKLER
                 if (project.external_links && project.external_links.length > 0) {
                     html += `
                     <section class="max-w-[90rem] mx-auto px-6 pb-12 text-center">
@@ -160,7 +161,6 @@
                     </section>`;
                 }
 
-                // Oluşturduğumuz HTML'i sayfaya bas
                 container.innerHTML = html;
 
             } catch (error) {
@@ -173,4 +173,3 @@
     </script>
 </body>
 </html>
-
