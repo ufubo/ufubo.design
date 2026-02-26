@@ -47,7 +47,7 @@
             return url;
         };
 
-        async function loadProjectDetails() {
+async function loadProjectDetails() {
             const container = document.getElementById('dynamic-content');
             const urlParams = new URLSearchParams(window.location.search);
             const projectId = urlParams.get('id');
@@ -58,11 +58,18 @@
             }
 
             try {
-                const jsonUrl = `https://raw.githubusercontent.com/ufubo/ufubo.design/main/data/projects/${projectId}.json`;
-                const response = await fetch(jsonUrl);
+                // ARTIK .md UZANTILI DOSYAYI ÇEKİYOR
+                const mdUrl = `https://raw.githubusercontent.com/ufubo/ufubo.design/main/data/projects/${projectId}.md`;
+                const response = await fetch(mdUrl);
                 if (!response.ok) throw new Error("Dosya bulunamadı");
                 
-                const project = await response.json();
+                const text = await response.text();
+                
+                // Markdown içinden YAML verisini ayrıştır
+                const match = text.match(/^-{3,}[\r\n]+([\s\S]*?)[\r\n]+-{3,}/);
+                if (!match) throw new Error("Format hatası");
+                
+                const project = jsyaml.load(match[1]);
                 document.title = `${project.title} | Ufubo Design`;
 
                 let html = '';
@@ -190,4 +197,5 @@
     </script>
 </body>
 </html>
+
 
