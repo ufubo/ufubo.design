@@ -16,15 +16,47 @@
 </head>
 <body class="text-zinc-300 antialiased selection:bg-zinc-700 selection:text-white relative">
 
-    <header class="fixed top-0 w-full glass-header z-50 border-b border-zinc-800/50">
+    <header class="fixed top-0 w-full glass-header z-[60] border-b border-zinc-800/50">
         <div class="max-w-[90rem] mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-baseline text-2xl tracking-widest uppercase hover:opacity-80 transition-opacity">
                 <span style="color: #ffffff; font-family: 'Montserrat', sans-serif; font-weight: 700;">UFUBO.</span>
                 <span style="color: #007fff; font-family: 'Montserrat', sans-serif; font-weight: 400;">DESIGN</span>
             </a>
-            <a href="mailto:hello@ufubo.design" class="px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-colors">Let's Talk</a>
+            
+            <nav class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="index.html#expertise" class="hover:text-white transition-colors">Expertise</a>
+                <a href="index.html#work" class="hover:text-white transition-colors">Works</a>
+                <a href="index.html#awards" class="hover:text-white transition-colors">Awards</a>
+            </nav>
+            
+            <div class="flex items-center gap-4">
+                <a href="mailto:hello@ufubo.design" class="hidden md:inline-block px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-colors">Let's Talk</a>
+                
+                <button id="menu-toggle" class="p-2 text-white focus:outline-none hover:text-[#007fff] transition-colors relative z-[70]">
+                    <svg id="icon-menu" class="w-8 h-8 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="icon-close" class="w-8 h-8 hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
         </div>
     </header>
+
+    <div id="full-menu" class="fixed inset-0 bg-zinc-950/95 backdrop-blur-xl z-[55] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-500">
+        <nav class="flex flex-col text-center gap-6 md:gap-8">
+            <a href="index.html" class="menu-link text-4xl md:text-6xl font-extrabold text-white hover:text-[#007fff] transition-colors">Home</a>
+            <a href="works.html" class="menu-link text-4xl md:text-6xl font-extrabold text-white hover:text-[#007fff] transition-colors">All Works</a>
+            
+            <div class="h-px w-24 bg-zinc-800 mx-auto my-2 md:my-4"></div>
+            
+            <a href="/industrial-design" class="menu-link text-xl md:text-3xl font-medium text-zinc-400 hover:text-white transition-colors">Industrial Design</a>
+            <a href="/visual-presentation" class="menu-link text-xl md:text-3xl font-medium text-zinc-400 hover:text-white transition-colors">Visual Presentation</a>
+            <a href="/graphic-design" class="menu-link text-xl md:text-3xl font-medium text-zinc-400 hover:text-white transition-colors">Graphic Design</a>
+            <a href="/digital-tools" class="menu-link text-xl md:text-3xl font-medium text-zinc-400 hover:text-white transition-colors">UI/UX & SaaS</a>
+            
+            <div class="h-px w-24 bg-zinc-800 mx-auto my-2 md:my-4"></div>
+            
+            <a href="mailto:hello@ufubo.design" class="menu-link text-lg font-mono text-zinc-500 hover:text-white transition-colors">hello@ufubo.design</a>
+        </nav>
+    </div>
 
     <main id="dynamic-content" class="pt-20 pb-24 min-h-screen">
         <div class="flex justify-center items-center h-[60vh]">
@@ -39,7 +71,7 @@
         </div>
     </footer>
 
-<script>
+    <script>
         const fixImg = (url) => {
             if (!url || typeof url !== 'string') return '';
             if (url.startsWith('/uploads')) return '.' + url;
@@ -58,19 +90,28 @@
             }
 
             try {
-                // CACHE KIRICI EKLENDİ
                 const mdUrl = `https://raw.githubusercontent.com/ufubo/ufubo.design/main/data/projects/${projectId}.md?t=` + new Date().getTime();
                 const response = await fetch(mdUrl);
-                if (!response.ok) throw new Error("Dosya bulunamadı");
                 
-                const text = await response.text();
+                let text;
+                if (!response.ok) {
+                    const jsonUrl = `https://raw.githubusercontent.com/ufubo/ufubo.design/main/data/projects/${projectId}.json?t=` + new Date().getTime();
+                    const resJson = await fetch(jsonUrl);
+                    if (!resJson.ok) throw new Error("Dosya bulunamadı");
+                    text = await resJson.text();
+                } else {
+                    text = await response.text();
+                }
                 
-                // ZIRHLI REGEX EKLENDİ
-                const match = text.match(/-{3,}[\r\n]+([\s\S]*?)[\r\n]+-{3,}/);
-                if (!match) throw new Error("Format hatası");
-                
-                const project = jsyaml.load(match[1]);
-                document.title = `${project.title} | Ufubo Design`;
+                let project;
+                if (text.trim().startsWith('{')) {
+                    project = JSON.parse(text);
+                } else {
+                    const match = text.match(/-{3,}[\r\n]+([\s\S]*?)[\r\n]+-{3,}/);
+                    project = match ? jsyaml.load(match[1]) : jsyaml.load(text);
+                }
+
+                document.title = `${project.title || 'Project Details'} | Ufubo Design`;
 
                 let html = '';
 
@@ -194,8 +235,33 @@
         }
 
         loadProjectDetails();
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const fullMenu = document.getElementById('full-menu');
+        const iconMenu = document.getElementById('icon-menu');
+        const iconClose = document.getElementById('icon-close');
+        const menuLinks = document.querySelectorAll('.menu-link');
+        let isMenuOpen = false;
+
+        const toggleMenu = () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                fullMenu.classList.remove('opacity-0', 'pointer-events-none');
+                fullMenu.classList.add('opacity-100', 'pointer-events-auto');
+                iconMenu.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                fullMenu.classList.add('opacity-0', 'pointer-events-none');
+                fullMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                document.body.style.overflow = 'auto'; 
+            }
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuLinks.forEach(link => link.addEventListener('click', () => { if(isMenuOpen) toggleMenu(); }));
     </script>
 </body>
 </html>
-
-

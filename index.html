@@ -11,13 +11,8 @@
         body { font-family: 'Inter', sans-serif; background-color: #09090b; }
         .glass-header { backdrop-filter: blur(12px); background-color: rgba(9, 9, 11, 0.75); }
         
-        /* Tam Ekran Hero Slider */
-        .hero-slider {
-            position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
-        }
-        .slide {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center right; opacity: 0; animation: fadeAnimation 15s infinite;
-        }
+        .hero-slider { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center right; opacity: 0; animation: fadeAnimation 15s infinite; }
         .slide:nth-child(1) { animation-delay: 0s; }
         .slide:nth-child(2) { animation-delay: 5s; }
         .slide:nth-child(3) { animation-delay: 10s; }
@@ -27,25 +22,13 @@
             33%, 100% { opacity: 0; transform: scale(1.05); }
         }
 
-        /* Beyaz renderlar üzerinde metin okunabilirliği için maskeler */
-        .hero-overlay-horizontal {
-            position: absolute; inset: 0; background: linear-gradient(to right, rgba(9, 9, 11, 1) 0%, rgba(9, 9, 11, 0.85) 40%, rgba(9, 9, 11, 0.1) 100%); z-index: 1; pointer-events: none;
-        }
-        .hero-overlay-vertical {
-            position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(9, 9, 11, 0.6) 0%, transparent 20%, transparent 70%, rgba(9, 9, 11, 1) 100%); z-index: 2; pointer-events: none;
-        }
+        .hero-overlay-horizontal { position: absolute; inset: 0; background: linear-gradient(to right, rgba(9, 9, 11, 1) 0%, rgba(9, 9, 11, 0.85) 40%, rgba(9, 9, 11, 0.1) 100%); z-index: 1; pointer-events: none; }
+        .hero-overlay-vertical { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(9, 9, 11, 0.6) 0%, transparent 20%, transparent 70%, rgba(9, 9, 11, 1) 100%); z-index: 2; pointer-events: none; }
 
-        /* Kartlardaki ince çizgi hatasını çözen yapı */
-        .pillar-card {
-            border-radius: 0px; transition: border-radius 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform: translateZ(0); 
-        }
+        .pillar-card { border-radius: 0px; transition: border-radius 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform: translateZ(0); }
         .pillar-card:hover { border-radius: 1.5rem; }
-        .pillar-img-wrapper {
-            position: absolute; inset: 0; overflow: hidden; border-radius: inherit;
-        }
-        .pillar-img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;
-        }
+        .pillar-img-wrapper { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+        .pillar-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
         .pillar-card:hover .pillar-img { transform: scale(1.1); filter: grayscale(0) !important; }
     </style>
 </head>
@@ -117,7 +100,6 @@
     <section id="expertise" class="py-20 relative z-10">
         <div class="max-w-[90rem] mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[60vh] min-h-[500px]">
-                
                 <a href="/industrial-design" class="pillar-card relative group block bg-zinc-900 h-full">
                     <div class="pillar-img-wrapper filter grayscale group-hover:grayscale-0">
                         <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" class="pillar-img" alt="Industrial Design">
@@ -129,7 +111,6 @@
                         <p class="text-sm text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 h-0 group-hover:h-auto overflow-hidden">End-to-end physical product design bridging conceptual vision, user ergonomics, and factory floor reality.</p>
                     </div>
                 </a>
-
                 <a href="/visual-presentation" class="pillar-card relative group block bg-zinc-900 h-full">
                     <div class="pillar-img-wrapper filter grayscale group-hover:grayscale-0">
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="pillar-img" alt="Visual Presentation">
@@ -141,7 +122,6 @@
                         <p class="text-sm text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 h-0 group-hover:h-auto overflow-hidden">Elevating product reveals through hyper-realistic rendering, AI conceptualization, and custom-scored cinematic videos.</p>
                     </div>
                 </a>
-
                 <a href="/graphic-design" class="pillar-card relative group block bg-zinc-900 h-full">
                     <div class="pillar-img-wrapper filter grayscale group-hover:grayscale-0">
                         <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" class="pillar-img" alt="Graphic Design">
@@ -153,7 +133,6 @@
                         <p class="text-sm text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 h-0 group-hover:h-auto overflow-hidden">Crafting compelling brand identities and visual communication materials that align with the physical product's DNA.</p>
                     </div>
                 </a>
-
                 <a href="/digital-tools" class="pillar-card relative group block bg-zinc-900 h-full">
                     <div class="pillar-img-wrapper filter grayscale group-hover:grayscale-0">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" class="pillar-img" alt="UI/UX & Digital Tools">
@@ -165,17 +144,16 @@
                         <p class="text-sm text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 h-0 group-hover:h-auto overflow-hidden">System-level thinking applied to workflow optimization. Designing internal SaaS platforms that turn complex R&D data into intuitive digital experiences.</p>
                     </div>
                 </a>
-
             </div>
         </div>
     </section>
 
     <section id="work" class="py-32 relative z-10">
         <div class="max-w-[90rem] mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white mb-16">Works</h2>
+            <h2 class="text-3xl font-bold text-white mb-16">Selected Works</h2>
             
             <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
-                </div>
+            </div>
 
             <div class="flex justify-center">
                 <a href="works.html" class="group flex items-center gap-3 px-8 py-4 bg-zinc-900 hover:bg-white text-white hover:text-black transition-all duration-300 rounded-full font-medium text-sm tracking-wide border border-zinc-800 hover:border-white">
@@ -197,7 +175,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">Inova Flex 4200</div>
                 </div>
-
                 <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800/50 hover:border-zinc-500 transition-colors">
                     <div class="flex items-baseline gap-8 md:w-2/3">
                         <span class="text-zinc-500 font-mono text-sm w-12">2022</span>
@@ -205,7 +182,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">Inova Flex 4200</div>
                 </div>
-
                 <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800/50 hover:border-zinc-500 transition-colors">
                     <div class="flex items-baseline gap-8 md:w-2/3">
                         <span class="text-zinc-500 font-mono text-sm w-12">2021</span>
@@ -213,7 +189,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">Inova Agile 4525L</div>
                 </div>
-
                 <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800/50 hover:border-zinc-500 transition-colors">
                     <div class="flex items-baseline gap-8 md:w-2/3">
                         <span class="text-zinc-500 font-mono text-sm w-12">2019</span>
@@ -221,7 +196,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">Inova Agile 4525L</div>
                 </div>
-
                 <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800/50 hover:border-zinc-500 transition-colors">
                     <div class="flex items-baseline gap-8 md:w-2/3">
                         <span class="text-zinc-500 font-mono text-sm w-12">2018</span>
@@ -229,7 +203,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">Inova Agile 4525L</div>
                 </div>
-
                 <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800/50 hover:border-zinc-500 transition-colors">
                     <div class="flex items-baseline gap-8 md:w-2/3">
                         <span class="text-zinc-500 font-mono text-sm w-12">2014</span>
@@ -237,7 +210,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">BlindBox</div>
                 </div>
-
                 <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800/50 hover:border-zinc-500 transition-colors">
                     <div class="flex items-baseline gap-8 md:w-2/3">
                         <span class="text-zinc-500 font-mono text-sm w-12">2014</span>
@@ -245,7 +217,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">ErgoFeet</div>
                 </div>
-
                 <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800/50 hover:border-zinc-500 transition-colors">
                     <div class="flex items-baseline gap-8 md:w-2/3">
                         <span class="text-zinc-500 font-mono text-sm w-12">2014</span>
@@ -253,7 +224,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">ErgoFeet</div>
                 </div>
-
                 <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800/50 hover:border-zinc-500 transition-colors">
                     <div class="flex items-baseline gap-8 md:w-2/3">
                         <span class="text-zinc-500 font-mono text-sm w-12">2013</span>
@@ -261,7 +231,6 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-20 md:ml-0 text-zinc-400 text-sm md:text-base text-right">Evinoks Vital Buffet</div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -277,7 +246,7 @@
         </div>
     </footer>
 
-<script>
+    <script>
         const getImg = (url) => {
             if (!url || typeof url !== 'string') return '';
             if (url.startsWith('/uploads')) return '.' + url;
@@ -294,33 +263,38 @@
                 
                 let allProjects = [];
 
-                // 1. Tüm projeleri topla
                 for (const file of files) {
-                    if (file.name.endsWith('.md')) {
+                    if (file.name.endsWith('.md') || file.name.endsWith('.json')) {
                         const projRes = await fetch(file.download_url + '?t=' + new Date().getTime());
                         const text = await projRes.text();
                         
-                        const match = text.match(/-{3,}[\r\n]+([\s\S]*?)[\r\n]+-{3,}/);
-                        if (!match) continue; 
-                        
-                        const project = jsyaml.load(match[1]);
-                        project.slug = file.name.replace('.md', ''); 
+                        let project;
+                        try {
+                            if (text.trim().startsWith('{')) {
+                                project = JSON.parse(text);
+                            } else {
+                                const match = text.match(/-{3,}[\r\n]+([\s\S]*?)[\r\n]+-{3,}/);
+                                project = match ? jsyaml.load(match[1]) : jsyaml.load(text);
+                            }
+                        } catch (e) {
+                            continue; 
+                        }
+
+                        project.slug = file.name.replace(/\.(md|json)$/, ''); 
                         allProjects.push(project);
                     }
                 }
 
-                // 2. FİLTRELE, SIRALA ve KES (Ana Sayfa Mantığı)
                 const featuredProjects = allProjects
-                    .filter(p => p.featured === true) // Sadece vitrinde gösterilenler
-                    .sort((a, b) => (a.order || 99) - (b.order || 99)) // Sıraya diz (numarası olmayanlar sona)
-                    .slice(0, 4); // Sadece ilk 4 tanesini al
+                    .filter(p => p.featured === true || p.featured === "true") 
+                    .sort((a, b) => (a.order || 99) - (b.order || 99)) 
+                    .slice(0, 4); 
 
                 grid.innerHTML = '';
 
-                // 3. Ekrana bas
                 featuredProjects.forEach(project => {
                     const imgSrc = getImg(project.hero_image);
-                    const imgHTML = imgSrc ? `<img src="${imgSrc}" alt="${project.title}" class="pillar-img">` : `<div class="pillar-img bg-zinc-800 flex items-center justify-center text-zinc-500 text-sm">Görsel Bekleniyor</div>`;
+                    const imgHTML = imgSrc ? `<img src="${imgSrc}" alt="${project.title}" class="pillar-img">` : `<div class="pillar-img bg-zinc-800 flex items-center justify-center text-zinc-500 text-sm h-full w-full">Görsel Bekleniyor</div>`;
 
                     const card = `
                         <a href="product.html?id=${project.slug}" class="pillar-card relative block h-[32rem] group cursor-pointer bg-zinc-900">
@@ -344,7 +318,7 @@
             }
         }
         loadProjects();
-        // Hamburger Menü Motoru
+
         const menuToggle = document.getElementById('menu-toggle');
         const fullMenu = document.getElementById('full-menu');
         const iconMenu = document.getElementById('icon-menu');
@@ -359,23 +333,18 @@
                 fullMenu.classList.add('opacity-100', 'pointer-events-auto');
                 iconMenu.classList.add('hidden');
                 iconClose.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // Arka planın kaymasını engeller
+                document.body.style.overflow = 'hidden'; 
             } else {
                 fullMenu.classList.add('opacity-0', 'pointer-events-none');
                 fullMenu.classList.remove('opacity-100', 'pointer-events-auto');
                 iconMenu.classList.remove('hidden');
                 iconClose.classList.add('hidden');
-                document.body.style.overflow = 'auto'; // Kaydırmayı geri açar
+                document.body.style.overflow = 'auto'; 
             }
         };
 
         menuToggle.addEventListener('click', toggleMenu);
         menuLinks.forEach(link => link.addEventListener('click', () => { if(isMenuOpen) toggleMenu(); }));
     </script>
-    
 </body>
 </html>
-
-
-
-
