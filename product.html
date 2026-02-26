@@ -39,7 +39,6 @@
     </footer>
 
     <script>
-        // Kurşun geçirmez resim yolu bulucu
         const fixImg = (url) => {
             if (!url) return '';
             if (url.startsWith('/uploads')) return '.' + url;
@@ -75,7 +74,7 @@
                     </section>`;
                 }
 
-                // TEMEL BİLGİLER & LOGOLAR (Invert kaldırıldı)
+                // TEMEL BİLGİLER & LOGOLAR
                 html += `
                 <section class="max-w-[90rem] mx-auto px-6 py-16">
                     <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
@@ -97,21 +96,43 @@
                     </div>
                 </section>`;
 
-                // ÖDÜLLER (Invert kaldırıldı, Yıl ve Derece birleştirildi)
-                if (project.awards && project.awards.length > 0) {
+                // ÖDÜLLER - TAMAMEN YENİLENDİ VE ZIRHLANDI
+                let awardsData = [];
+                if (project.awards) {
+                    // Veri dizi değilse (CMS kaynaklı bir hataysa) zorla diziye çevir
+                    if (Array.isArray(project.awards)) awardsData = project.awards;
+                    else if (typeof project.awards === 'object') awardsData = Object.values(project.awards);
+                }
+                
+                // Boş verileri temizle
+                awardsData = awardsData.filter(a => a && typeof a === 'object' && (a.title || a.logo));
+
+                if (awardsData.length > 0) {
                     html += `
                     <section class="max-w-[90rem] mx-auto px-6 pb-16">
                         <div class="border-t border-b border-zinc-800/50 py-12">
                             <h3 class="text-center text-xl font-semibold text-white mb-12 uppercase tracking-widest">Awards</h3>
                             <div class="flex flex-wrap justify-center gap-16">
-                                ${project.awards.map(award => `
-                                    <div class="flex flex-col items-center group text-center">
-                                        ${award.logo ? `<img src="${fixImg(award.logo)}" alt="${award.title}" class="w-32 h-32 mb-4 object-contain">` : ''}
-                                        <p class="text-white font-medium">${award.title || ''}</p>
-                                        <p class="text-zinc-500 text-sm mb-2">${[award.year, award.subtitle].filter(Boolean).join(', ')}</p>
-                                        ${award.link ? `<a href="${award.link}" target="_blank" class="text-xs text-[#007fff] hover:text-white transition-colors underline">Award page</a>` : ''}
-                                    </div>
-                                `).join('')}
+                                ${awardsData.map(award => {
+                                    // CMS'in oluşturabileceği farklı isim kombinasyonlarına karşı koruma
+                                    const aYear = award.year || award.Year || '';
+                                    const aSub = award.subtitle || award.Subtitle || '';
+                                    const aLink = award.link || award.Link || award.url || '';
+                                    const aTitle = award.title || award.Title || '';
+                                    const aLogo = award.logo || award.Logo || '';
+                                    
+                                    // Yıl ve Dereceyi "2022, Winner" formatında birleştir
+                                    const infoLine = [aYear, aSub].filter(Boolean).join(', ');
+                                    
+                                    return \`
+                                        <div class="flex flex-col items-center group text-center w-48">
+                                            \${aLogo ? \`<img src="\${fixImg(aLogo)}" alt="\${aTitle}" class="w-32 h-32 mb-4 object-contain">\` : ''}
+                                            \${aTitle ? \`<p class="text-white font-medium mb-1">\${aTitle}</p>\` : ''}
+                                            \${infoLine ? \`<p class="text-zinc-500 text-sm mb-2">\${infoLine}</p>\` : ''}
+                                            \${aLink ? \`<a href="\${aLink}" target="_blank" class="text-xs text-[#007fff] hover:text-white transition-colors underline mt-2">Award page</a>\` : ''}
+                                        </div>
+                                    \`;
+                                }).join('')}
                             </div>
                         </div>
                     </section>`;
@@ -135,11 +156,10 @@
                     html += `</section>`;
                 }
 
-                // GALERİ (CMS'in farklı kaydetme ihtimallerine karşı korumalı)
+                // GALERİ
                 if (project.gallery && project.gallery.length > 0) {
                     html += `<section class="w-full flex flex-col gap-6 px-6 pb-24">`;
                     project.gallery.forEach(item => {
-                        // Eğer obje ise item.image al, düz metinse item'in kendisini al
                         const imgPath = typeof item === 'string' ? item : item.image;
                         if (imgPath) {
                             html += `<img src="${fixImg(imgPath)}" alt="Gallery Render" class="w-full object-cover rounded-xl shadow-2xl">`;
