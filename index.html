@@ -244,7 +244,6 @@
     </footer>
 
 <script>
-        // Kurşun geçirmez resim yolu bulucu
         const getImg = (url) => {
             if (!url) return '';
             if (url.startsWith('/uploads')) return '.' + url;
@@ -261,10 +260,17 @@
                 grid.innerHTML = '';
 
                 for (const file of files) {
-                    if (file.name.endsWith('.json')) {
+                    // ARTIK SADECE .md DOSYALARINI OKUYOR
+                    if (file.name.endsWith('.md')) {
                         const projRes = await fetch(file.download_url);
-                        const project = await projRes.json();
-                        const slug = file.name.replace('.json', '');
+                        const text = await projRes.text();
+                        
+                        // CMS'in oluşturduğu Markdown'un içindeki veriyi söküp al
+                        const match = text.match(/^-{3,}[\r\n]+([\s\S]*?)[\r\n]+-{3,}/);
+                        if (!match) continue; // Geçersiz dosyayı atla
+                        
+                        const project = jsyaml.load(match[1]);
+                        const slug = file.name.replace('.md', ''); // Linkler artık MD ismine göre (Örn: 2026-02-26-optima-4330l)
 
                         const card = `
                             <a href="product.html?id=${slug}" class="pillar-card relative block h-[28rem] group cursor-pointer bg-zinc-900">
@@ -273,9 +279,9 @@
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500 rounded-inherit"></div>
                                 <div class="absolute bottom-0 left-0 p-8 w-full z-10">
-                                    <h3 class="text-3xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">${project.title}</h3>
+                                    <h3 class="text-3xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">${project.title || ''}</h3>
                                     <p class="text-zinc-400 font-medium transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out delay-75">
-                                        ${project.product_type} <span class="text-zinc-600 mx-2">|</span> ${project.year}
+                                        ${project.product_type || ''} <span class="text-zinc-600 mx-2">|</span> ${project.year || ''}
                                     </p>
                                 </div>
                             </a>
@@ -292,6 +298,7 @@
     
 </body>
 </html>
+
 
 
 
