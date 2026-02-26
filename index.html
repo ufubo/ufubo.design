@@ -245,7 +245,7 @@
 
 <script>
         const getImg = (url) => {
-            if (!url) return '';
+            if (!url || typeof url !== 'string') return '';
             if (url.startsWith('/uploads')) return '.' + url;
             if (url.startsWith('uploads')) return './' + url;
             return url;
@@ -254,28 +254,33 @@
         async function loadProjects() {
             const grid = document.getElementById('project-grid');
             try {
+                // Klasör listesini çekiyoruz
                 const repoUrl = 'https://api.github.com/repos/ufubo/ufubo.design/contents/data/projects';
                 const response = await fetch(repoUrl);
                 const files = await response.json();
                 grid.innerHTML = '';
 
                 for (const file of files) {
-                    // ARTIK SADECE .md DOSYALARINI OKUYOR
                     if (file.name.endsWith('.md')) {
-                        const projRes = await fetch(file.download_url);
+                        // BÜYÜK HİLE: URL'nin sonuna saat ekleyerek GitHub'ın önbelleğini (cache) kırıyoruz
+                        const projRes = await fetch(file.download_url + '?t=' + new Date().getTime());
                         const text = await projRes.text();
                         
-                        // CMS'in oluşturduğu Markdown'un içindeki veriyi söküp al
-                        const match = text.match(/^-{3,}[\r\n]+([\s\S]*?)[\r\n]+-{3,}/);
-                        if (!match) continue; // Geçersiz dosyayı atla
+                        // ZIRHLI REGEX: Görünmez karakterleri (BOM) yoksayıp YAML'ı %100 bulur
+                        const match = text.match(/-{3,}[\r\n]+([\s\S]*?)[\r\n]+-{3,}/);
+                        if (!match) continue; 
                         
                         const project = jsyaml.load(match[1]);
-                        const slug = file.name.replace('.md', ''); // Linkler artık MD ismine göre (Örn: 2026-02-26-optima-4330l)
+                        const slug = file.name.replace('.md', ''); 
+
+                        // Resim yoksa kırık ikon çıkmasını engelleyen koruma
+                        const imgSrc = getImg(project.hero_image);
+                        const imgHTML = imgSrc ? `<img src="${imgSrc}" alt="${project.title}" class="pillar-img">` : `<div class="pillar-img bg-zinc-800 flex items-center justify-center text-zinc-500 text-sm">Görsel Bekleniyor</div>`;
 
                         const card = `
                             <a href="product.html?id=${slug}" class="pillar-card relative block h-[28rem] group cursor-pointer bg-zinc-900">
                                 <div class="pillar-img-wrapper filter grayscale group-hover:grayscale-0">
-                                    <img src="${getImg(project.hero_image)}" alt="${project.title}" class="pillar-img">
+                                    ${imgHTML}
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500 rounded-inherit"></div>
                                 <div class="absolute bottom-0 left-0 p-8 w-full z-10">
