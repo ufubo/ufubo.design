@@ -96,15 +96,13 @@
                     </div>
                 </section>`;
 
-                // ÖDÜLLER - TAMAMEN YENİLENDİ VE ZIRHLANDI
+                // ÖDÜLLER 
                 let awardsData = [];
                 if (project.awards) {
-                    // Veri dizi değilse (CMS kaynaklı bir hataysa) zorla diziye çevir
                     if (Array.isArray(project.awards)) awardsData = project.awards;
                     else if (typeof project.awards === 'object') awardsData = Object.values(project.awards);
                 }
                 
-                // Boş verileri temizle
                 awardsData = awardsData.filter(a => a && typeof a === 'object' && (a.title || a.logo));
 
                 if (awardsData.length > 0) {
@@ -114,24 +112,22 @@
                             <h3 class="text-center text-xl font-semibold text-white mb-12 uppercase tracking-widest">Awards</h3>
                             <div class="flex flex-wrap justify-center gap-16">
                                 ${awardsData.map(award => {
-                                    // CMS'in oluşturabileceği farklı isim kombinasyonlarına karşı koruma
                                     const aYear = award.year || award.Year || '';
                                     const aSub = award.subtitle || award.Subtitle || '';
                                     const aLink = award.link || award.Link || award.url || '';
                                     const aTitle = award.title || award.Title || '';
                                     const aLogo = award.logo || award.Logo || '';
                                     
-                                    // Yıl ve Dereceyi "2022, Winner" formatında birleştir
                                     const infoLine = [aYear, aSub].filter(Boolean).join(', ');
                                     
-                                    return \`
+                                    return `
                                         <div class="flex flex-col items-center group text-center w-48">
-                                            \${aLogo ? \`<img src="\${fixImg(aLogo)}" alt="\${aTitle}" class="w-32 h-32 mb-4 object-contain">\` : ''}
-                                            \${aTitle ? \`<p class="text-white font-medium mb-1">\${aTitle}</p>\` : ''}
-                                            \${infoLine ? \`<p class="text-zinc-500 text-sm mb-2">\${infoLine}</p>\` : ''}
-                                            \${aLink ? \`<a href="\${aLink}" target="_blank" class="text-xs text-[#007fff] hover:text-white transition-colors underline mt-2">Award page</a>\` : ''}
+                                            ${aLogo ? `<img src="${fixImg(aLogo)}" alt="${aTitle}" class="w-32 h-32 mb-4 object-contain">` : ''}
+                                            ${aTitle ? `<p class="text-white font-medium mb-1">${aTitle}</p>` : ''}
+                                            ${infoLine ? `<p class="text-zinc-500 text-sm mb-2">${infoLine}</p>` : ''}
+                                            ${aLink ? `<a href="${aLink}" target="_blank" class="text-xs text-[#007fff] hover:text-white transition-colors underline mt-2">Award page</a>` : ''}
                                         </div>
-                                    \`;
+                                    `;
                                 }).join('')}
                             </div>
                         </div>
